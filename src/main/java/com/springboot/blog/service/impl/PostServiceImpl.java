@@ -3,15 +3,19 @@ package com.springboot.blog.service.impl;
 import com.springboot.blog.entity.Post;
 import com.springboot.blog.exception.ResourceNotFoundException;
 import com.springboot.blog.payload.PostDto;
+import com.springboot.blog.payload.PostResponse;
 import com.springboot.blog.repository.PostRepository;
 import com.springboot.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
+
+import org.springframework.data.domain.Pageable;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -40,20 +44,42 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostDto> getAllPosts() {
+    public PostResponse getAllPosts(int pageNo, int pageSize , String sortBy , String sortDir) {
 
-        List<Post> posts = postRepository.findAll();
+        // create sort obj based on sort Direction
 
-        return posts.stream()
+        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ?
+                Sort.by(sortBy).ascending() : Sort.by(sortBy).descending() ;
+
+        // Apply Paging & Sorting
+        Pageable pageable = PageRequest.of(pageNo, pageSize, sort );
+
+        Page<Post> posts = postRepository.findAll(pageable);
+
+        List<Post> postList = posts.getContent();
+        List<PostDto> postDtoList = posts.stream()
                 .map(post -> mapToDto(post))
                 .collect(Collectors.toList());
+
+        PostResponse postResponse = new PostResponse(
+                postDtoList ,
+                posts.getNumber(),
+                posts.getSize() ,
+                posts.getTotalElements(),
+                posts.getTotalPages() ,
+                posts.isLast()
+        );
+
+
+
+        return postResponse;
     }
 
     @Override
     public PostDto getPostById(long id) {
 
         Post post = postRepository.findById(id).
-                orElseThrow(()-> new ResourceNotFoundException("posts","id",id) );
+                orElseThrow(() -> new ResourceNotFoundException("posts", "id", id));
 
         return mapToDto(post);
     }
@@ -63,7 +89,7 @@ public class PostServiceImpl implements PostService {
 
 
         Post savedPost = postRepository.findById(id).orElseThrow(
-                ()-> new ResourceNotFoundException("posts","id",id)
+                () -> new ResourceNotFoundException("posts", "id", id)
         );
 
         savedPost.setTitle(postDto.getTitle());
@@ -79,7 +105,7 @@ public class PostServiceImpl implements PostService {
     public void deletePost(Long id) {
 
         Post post = postRepository.findById(id).orElseThrow(
-                ()-> new ResourceNotFoundException("posts","id",id)
+                () -> new ResourceNotFoundException("posts", "id", id)
         );
 
         postRepository.delete(post);
