@@ -1,11 +1,14 @@
 package com.springboot.blog.service.impl;
 
+import com.springboot.blog.entity.Comment;
 import com.springboot.blog.entity.Post;
 import com.springboot.blog.exception.ResourceNotFoundException;
 import com.springboot.blog.payload.PostDto;
 import com.springboot.blog.payload.PostResponse;
+import com.springboot.blog.repository.CommentRepository;
 import com.springboot.blog.repository.PostRepository;
 import com.springboot.blog.service.PostService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Pageable;
@@ -22,10 +26,16 @@ public class PostServiceImpl implements PostService {
 
 
     private PostRepository postRepository;
+    private ModelMapper modelMapper;
+
+
 
     @Autowired
-    public PostServiceImpl(PostRepository postRepository) {
+    public PostServiceImpl(PostRepository postRepository, ModelMapper modelMapper) {
         this.postRepository = postRepository;
+        this.modelMapper = modelMapper;
+
+
     }
 
     @Override
@@ -44,15 +54,15 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostResponse getAllPosts(int pageNo, int pageSize , String sortBy , String sortDir) {
+    public PostResponse getAllPosts(int pageNo, int pageSize, String sortBy, String sortDir) {
 
         // create sort obj based on sort Direction
 
         Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ?
-                Sort.by(sortBy).ascending() : Sort.by(sortBy).descending() ;
+                Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
 
         // Apply Paging & Sorting
-        Pageable pageable = PageRequest.of(pageNo, pageSize, sort );
+        Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
 
         Page<Post> posts = postRepository.findAll(pageable);
 
@@ -62,14 +72,13 @@ public class PostServiceImpl implements PostService {
                 .collect(Collectors.toList());
 
         PostResponse postResponse = new PostResponse(
-                postDtoList ,
+                postDtoList,
                 posts.getNumber(),
-                posts.getSize() ,
+                posts.getSize(),
                 posts.getTotalElements(),
-                posts.getTotalPages() ,
+                posts.getTotalPages(),
                 posts.isLast()
         );
-
 
 
         return postResponse;
@@ -117,10 +126,7 @@ public class PostServiceImpl implements PostService {
 
         // Convert DTO to Entity
 
-        Post post = new Post();
-        post.setTitle(postDto.getTitle());
-        post.setDescription(postDto.getDescription());
-        post.setContent(postDto.getContent());
+        Post post = modelMapper.map(postDto, Post.class);
 
         return post;
 
@@ -130,11 +136,7 @@ public class PostServiceImpl implements PostService {
 
         // Convert Entity to DTO
 
-        PostDto postDto = new PostDto();
-        postDto.setId(post.getId());
-        postDto.setTitle(post.getTitle());
-        postDto.setDescription(post.getDescription());
-        postDto.setContent(post.getContent());
+        PostDto postDto = modelMapper.map(post, PostDto.class);
 
         return postDto;
     }
