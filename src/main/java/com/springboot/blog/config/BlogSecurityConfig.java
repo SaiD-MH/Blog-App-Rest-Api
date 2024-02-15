@@ -45,11 +45,11 @@ public class BlogSecurityConfig {
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // don't create JSESSIONID
                 .authorizeHttpRequests((request) -> request
 
-                        .requestMatchers(HttpMethod.GET, "/api/posts/**").hasRole("USER")
-                        .requestMatchers(HttpMethod.POST, "/api/posts/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/posts/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/posts/**").hasRole("ADMIN")
-                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/posts/**").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/posts/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/posts/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/posts/**").hasRole("ADMIN")
+                        .requestMatchers("/api/v1/auth/**").permitAll()
 
                 )
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(authenticationEntryPoint))
