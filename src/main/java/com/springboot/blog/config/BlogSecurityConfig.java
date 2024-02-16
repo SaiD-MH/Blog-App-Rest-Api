@@ -50,6 +50,15 @@ public class BlogSecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/posts/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/v1/posts/**").hasRole("ADMIN")
                         .requestMatchers("/api/v1/auth/**").permitAll()
+                        .requestMatchers(
+                                "/v3/api-docs",
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html"
+
+
+                                ).permitAll()
+
 
                 )
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(authenticationEntryPoint))

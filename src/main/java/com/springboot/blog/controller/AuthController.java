@@ -8,6 +8,9 @@ import com.springboot.blog.payload.SignUpDto;
 import com.springboot.blog.repository.RoleRepository;
 import com.springboot.blog.repository.UserRepository;
 import com.springboot.blog.service.AuthService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +29,7 @@ import java.util.Collections;
 
 @RestController
 @RequestMapping("/api/v1/auth")
+@Tag(name = "REST APIs for Auth Resource")
 public class AuthController {
 
 
@@ -36,6 +40,21 @@ public class AuthController {
     }
 
     @PostMapping(value = {"/login", "/signin"})
+    @Operation(
+
+            description = "login in the application by passing email and password and receive JWT Token",
+            summary = "Login with your credential",
+            responses = {
+                    @ApiResponse(
+                            description = "Login Successfully",
+                            responseCode = "200"
+                    ),
+                    @ApiResponse(
+                            description = "Unauthorized or Invalid Token",
+                            responseCode = "401"
+                    )
+            }
+    )
     public ResponseEntity<JWTResponseDto> authenticateUser(@RequestBody LoginDto loginDto) {
 
         JWTResponseDto jwtResponseDto = new JWTResponseDto();
@@ -50,7 +69,21 @@ public class AuthController {
 
 
     @PostMapping(value = {"/signup", "/register"})
+    @Operation(
 
+            description = "Register new User by sending (name , email , password , username ) as Parameters",
+            summary = "Create New User",
+            responses = {
+                    @ApiResponse(
+                            description = "CREATED",
+                            responseCode = "201"
+                    ),
+                    @ApiResponse(
+                            description = "Bad Request , Existing Email or bad info",
+                            responseCode = "404"
+                    )
+            }
+    )
     public ResponseEntity<?> registerUser(@RequestBody SignUpDto signUpDto) {
 
 
