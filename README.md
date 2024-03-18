@@ -19,17 +19,17 @@ This is a RESTful API for a blog application built using Spring Boot and Java. T
 ## Technology & Tools
 
 - **Java8** 
-- **Spring Boot:** 
-- **Spring Security:** 
-- **Spring Data JPA:** 
-- **JWT (JSON Web Tokens):** 
-- **Swagger/OpenAPI:** 
-- **Maven:** 
-- **JUnit:** 
-- **Git:** 
-- **GitHub:** 
-- **MySQL:** 
-- ** IntelliJ IDEA**
+- **Spring Boot** 
+- **Spring Security** 
+- **Spring Data JPA** 
+- **JWT (JSON Web Tokens)** 
+- **Swagger/OpenAPI** 
+- **Maven** 
+- **JUnit** 
+- **Git** 
+- **GitHub** 
+- **MySQL** 
+- **IntelliJ IDEA**
 
 ## Prerequisites
 
