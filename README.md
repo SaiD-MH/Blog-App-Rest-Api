@@ -11,11 +11,25 @@ This is a RESTful API for a blog application built using Spring Boot and Java. T
 - **Search and Filtering:** Search for posts based on keywords, tags, or categories. Filter posts by date, popularity, and more.
 - **Pagination:** Paginate posts and comments for better performance and user experience.
 - **User Profile Management:** Update user profiles, change passwords, and manage profile information.
-- **Basic Analytics:** Track views, likes, comments, and other basic analytics for each post.
 - **Validation and Error Handling:** Implement input validation and handle errors gracefully with appropriate status codes and messages.
 - **Security:** Ensure security best practices with HTTPS, rate limiting, and input sanitization.
 - **Documentation:** API documentation provided using Swagger/OpenAPI for easy understanding and integration.
 - **Testing:** Unit tests and integration tests for reliability and correctness of API endpoints.
+
+## Technology & Tools
+
+- **Java8 ** Programming language used for backend development.
+- **Spring Boot:** Framework for building robust and scalable Java applications.
+- **Spring Security:** Provides authentication and authorization features for secure API endpoints.
+- **Spring Data JPA:** Simplifies data access and manipulation using the Java Persistence API (JPA).
+- **JWT (JSON Web Tokens):** Used for user authentication and session management.
+- **Swagger/OpenAPI:** Generates API documentation for easy integration and understanding.
+- **Maven:** Build automation and dependency management tool.
+- **JUnit:** Framework for writing and running unit tests.
+- **Git:** Version control system for collaborative development.
+- **GitHub:** Platform for hosting Git repositories and managing project workflows.
+- **MySQL:** Relational database options for storing application data.
+- **IDE (Integrated Development Environment):** IntelliJ IDEA
 
 ## Prerequisites
 
