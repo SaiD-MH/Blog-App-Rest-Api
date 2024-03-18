@@ -18,18 +18,18 @@ This is a RESTful API for a blog application built using Spring Boot and Java. T
 
 ## Technology & Tools
 
-- **Java8 ** Programming language used for backend development.
-- **Spring Boot:** Framework for building robust and scalable Java applications.
-- **Spring Security:** Provides authentication and authorization features for secure API endpoints.
-- **Spring Data JPA:** Simplifies data access and manipulation using the Java Persistence API (JPA).
-- **JWT (JSON Web Tokens):** Used for user authentication and session management.
-- **Swagger/OpenAPI:** Generates API documentation for easy integration and understanding.
-- **Maven:** Build automation and dependency management tool.
-- **JUnit:** Framework for writing and running unit tests.
-- **Git:** Version control system for collaborative development.
-- **GitHub:** Platform for hosting Git repositories and managing project workflows.
-- **MySQL:** Relational database options for storing application data.
-- **IDE (Integrated Development Environment):** IntelliJ IDEA
+- **Java8** 
+- **Spring Boot:** 
+- **Spring Security:** 
+- **Spring Data JPA:** 
+- **JWT (JSON Web Tokens):** 
+- **Swagger/OpenAPI:** 
+- **Maven:** 
+- **JUnit:** 
+- **Git:** 
+- **GitHub:** 
+- **MySQL:** 
+- ** IntelliJ IDEA**
 
 ## Prerequisites
 
