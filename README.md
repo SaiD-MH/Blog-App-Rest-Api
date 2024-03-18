@@ -25,7 +25,25 @@ This is a RESTful API for a blog application built using Spring Boot and Java. T
 ## Installation
 
 1. Clone the repository:
+`` git clone https://github.com/SaiD-MH/Blog-App-Rest-Api.git
+  cd blog-app-rest-api ``
 
-```bash
-git clone https://github.com/yourusername/blog-app-rest-api.git
-cd blog-app-rest-api
+2. Build the project using Maven:
+   ``mvn clean install``
+3. Run the application:
+  ``java -jar target/blog-app-rest-api.jar``
+4. Set up database:
+  `` Configure your database connection details in src/main/resources/application.properties.
+     Run the database migrations using tools like Flyway or Liquibase.``
+
+## API Documentation
+  ``the API documentation is available at /swagger-ui.html endpoint when the application is running. You can access it in your browser to explore and test the API endpoints.``
+
+##Contributing
+  ``Contributions are welcome! Please fork the repository and create a pull request with your changes.``
+
+##License
+``This project is licensed under the MIT License - see the LICENSE file for details.``
+
+
+
