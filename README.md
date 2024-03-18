@@ -34,7 +34,7 @@ This is a RESTful API for a blog application built using Spring Boot and Java. T
 ## Prerequisites
 
 - Java Development Kit (JDK) 8 or later
-- Maven or Gradle for dependency management (Maven is used in this example)
+- Maven 
 
 ## Installation
 
