@@ -35,7 +35,9 @@ This is a RESTful API for a blog application built using Spring Boot and Java. T
 
 - Java Development Kit (JDK) 8 or later
 - Maven 
-
+## DB_SCHEMA
+  ![DB_SCHEMA](https://raw.githubusercontent.com/SaiD-MH/Blog-App-Rest-Api/f03814b5695490e82c39044fc1852e9f0f514393/src/main/resources/static/DB_SCHEMA.png)
+  
 ## Installation
 
 1. Clone the repository:
